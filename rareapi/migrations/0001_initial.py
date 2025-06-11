@@ -4,6 +4,8 @@ from django.db import migrations, models
 import django.db.models.deletion
 
 
+
+
 class Migration(migrations.Migration):
 
     initial = True
@@ -29,6 +31,7 @@ class Migration(migrations.Migration):
                 ('content', models.TextField(max_length=500)),
                 ('approved', models.BooleanField(default=True)),
                 ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='rareapi.category')),
+           
             ],
         ),
     ]
