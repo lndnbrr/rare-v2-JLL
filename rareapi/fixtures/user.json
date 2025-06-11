@@ -1,0 +1,62 @@
+[
+  {
+    "model": "rareapi.user",
+    "pk": 1,
+    "fields": {
+      "first_name" : "Johnny",
+      "last_name" : "Dime",
+      "bio" : "I like Cash",
+      "profile_image_url" : "https://headlinerhub.com/assets/image-cache/img/assets/img/cash.235fce1d.jpg",
+      "email" : "ring@mozmail.com",
+      "created" : "2000-10-19T20:30:15.123Z",
+      "active" : false,
+      "is_staff" : false,
+      "uid" : "fakeuid1"
+    }
+  },
+  {
+    "model": "rareapi.user",
+    "pk": 2,
+    "fields": {
+      "first_name" : "Jason",
+      "last_name" : "Cheetham",
+      "bio" : "You know this boogie is for reeeeeeal",
+      "profile_image_url" : "https://i.ebayimg.com/images/g/nUAAAOSwaxZm-7zI/s-l400.jpg",
+      "email" : "jamiroquai@gmail.com",
+      "created" : "2001-08-14T20:30:15.123Z",
+      "active" : true,
+      "is_staff" : true,
+      "uid" : "fakeuid2"
+    }
+  },
+  {
+    "model": "rareapi.user",
+    "pk": 3,
+    "fields": {
+      "first_name" : "Eric",
+      "last_name" : "Bishop",
+      "bio" : "I played Django, what do you mean the framework?!",
+      "profile_image_url" : "https://static.wikia.nocookie.net/rio/images/0/0b/Jamie_Foxx.jpg/revision/latest?cb=20180504203411",
+      "email" : "jamie@mozmail.com",
+      "created" : "2021-03-12T20:30:15.123Z",
+      "active" : true,
+      "is_staff" : true,
+      "uid" : "fakeuid3"
+    }
+  },
+  {
+    "model": "rareapi.user",
+    "pk": 4,
+    "fields": {
+      "first_name" : "Edgar",
+      "last_name" : "Poe",
+      "bio" : "DONT DELETE ME AHHHHHHHHH",
+      "profile_image_url" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwX6rZ_VLwrOK9E86bK6C8RtHY1kFMWllc-Ca4Aux1mwu1j7A7",
+      "email" : "EAP@gmail.com",
+      "created" : "2007-08-14T20:30:15.123Z",
+      "active" : false,
+      "is_staff" : false,
+      "uid" : "fakeuid4"
+    }
+  }
+]
