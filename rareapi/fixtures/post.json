@@ -1,0 +1,43 @@
+
+[
+  {
+      "model": "rareapi.post",
+      "pk": 1,
+      "fields": {
+          "user": "1",
+          "category": "1",
+          "title": "Sup fools?",
+          "publication_date": "2025-05-29",
+          "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvIQzPCig0A4-zgOYjUE7f7T8haBkIKnFcxQ&s",
+          "content": "Nick Cave is the best, come fight me.",
+          "approved": "True"
+      
+      }
+  },
+  {
+    "model": "rareapi.post",
+    "pk": 2,
+    "fields": {
+        "user": "1",
+        "category": "2",
+        "title": "World Cup is Coming to America!",
+        "publication_date": "2025-06-10",
+        "image_url": "https://ca-times.brightspotcdn.com/dims4/default/fcbf238/2147483647/strip/true/crop/3677x2451+0+0/resize/2000x1333!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Ffa%2F58%2Ff1f102444441a7ea73a60d43753c%2Fqatar-soccer-wcup-match-moments-day-24-photo-gallery-89324.jpg",
+        "content": "Argentina are the favorites to win again.",
+        "approved": "True" 
+    }
+},
+{
+  "model": "rareapi.post",
+  "pk": 3,
+  "fields": {
+      "user": "1",
+      "category": "3",
+      "title": "The Meaning of Life",
+      "publication_date": "2025-05-20",
+      "image_url": "data:image/jpeg;base64,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",
+      "content": "Do you ever think life is like a box of chocolates?",
+      "approved": "True"
+  }
+}
+]
