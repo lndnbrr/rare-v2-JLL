@@ -1,9 +1,11 @@
 from django.db import models
 from .category import Category
+from .user import User
 
 class Post(models.Model):
 
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=False)
     title = models.CharField(max_length=80)
     publication_date = models.DateField()
