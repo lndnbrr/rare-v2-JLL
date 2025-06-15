@@ -3,10 +3,25 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from rareapi.models import Comment, Post, User
+from rareapi.filters import CommentFilter
 
 
 class CommentView(ViewSet):
     """Rare comments view"""
+
+    def list(self, request):
+        if "post" in request.GET:
+            filterset = CommentFilter(
+                data=request.GET, queryset=Comment.objects.all().order_by('-created_on'))
+            comments = filterset.qs
+            serializer = CommentPostSerializer(comments, many=True)
+        else:
+            filterset = CommentFilter(
+                data=request.GET, queryset=Comment.objects.all())
+            comments = filterset.qs
+            serializer = CommentSerializer(comments, many=True)
+
+        return Response(serializer.data)
 
     def create(self, request):
         """Handle POST requests for comments
@@ -56,4 +71,19 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ('id', 'author', 'post', 'content', 'created_on')
-        depth = 1
+
+
+class CommentPostSerializer(serializers.ModelSerializer):
+    """JSON serializer for comments on a specific post"""
+    author_full_name = serializers.SerializerMethodField()
+    creation_date = serializers.SerializerMethodField()
+
+    def get_author_full_name(self, obj):
+        return f"{obj.author.first_name} {obj.author.last_name}".strip()
+
+    def get_creation_date(self, obj):
+        return obj.created_on.strftime("%m/%d/%Y at %I:%M %p")
+
+    class Meta:
+        model = Comment
+        fields = ('id', 'author_full_name', 'content', 'creation_date')
