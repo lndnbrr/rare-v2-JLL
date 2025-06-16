@@ -38,6 +38,30 @@ class PostView(ViewSet):
     )
     serializer = PostSerializer(post)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
+  
+  def update(self, request, pk):
+    """Handle PUT requests for Posts"""
+   
+    post = Post.objects.get(pk=pk)
+    user = User.objects.get(pk=request.data["user"])
+    post.user=user
+    category = Category.objects.get(pk=request.data["categoryid"])
+    post.category=category
+    post.title=request.data["title"]
+    post.publication_date=request.data["publication_date"]
+    post.image_url=request.data["image_url"]
+    post.content=request.data["content"]
+    post.approved=request.data["approved"]
+    post.save()
+   
+    serializer = PostSerializer(post)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+ 
+  def destroy(self, request, pk):
+    post = Post.objects.get(pk=pk)
+    post.delete()
+    return Response(None, status=status.HTTP_204_NO_CONTENT)
+   
 
 
 class PostSerializer(serializers.ModelSerializer):
