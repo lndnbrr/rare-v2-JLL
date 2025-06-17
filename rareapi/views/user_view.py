@@ -76,20 +76,44 @@ class UserViews (ViewSet):
             A serialized object of a user's updated details.
           
         '''
+        try:
+            user = User.objects.get(pk = pk)
+            user.first_name = request.data["first_name"]
+            user.last_name = request.data["last_name"]
+            user.bio = request.data["bio"]
+            user.profile_image_url = request.data["profile_image_url"]
+            user.email = request.data["email"]
+            user.active = request.data["active"]
+            user.is_staff = request.data["is_staff"]
+            user.save()
+            serialized = UserSerializer(user)
+            return Response(serialized.data, status=status.HTTP_200_OK)
 
-        user = User.objects.get(pk = pk)
-        user.first_name = request.data["first_name"]
-        user.last_name = request.data["last_name"]
-        user.bio = request.data["bio"]
-        user.profile_image_url = request.data["profile_image_url"]
-        user.email = request.data["email"]
-        user.active = request.data["active"]
-        user.is_staff = request.data["is_staff"]
-        user.save()
+        except User.DoesNotExist:
+            return Response({"message": "User does not exist."}, status=status.HTTP_404_NOT_FOUND)
 
-        serialized = UserSerializer(user)
-        return Response(serialized.data, status=status.HTTP_200_OK)
+    def destroy (self, request, pk):
 
+        '''
+          This is a method that will delete a user profile
+          
+          Args: 
+            
+            request = The incoming info about what a user is asking for
+            and where that info is coming from.
+            
+          Returns:
+            A serialized object of a user's updated details.
+          
+        '''
+        try:
+            user = User.objects.get(pk = pk)
+            user.delete()
+
+            return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+        except User.DoesNotExist:
+            return Response({"message": "User does not exist."}, status=status.HTTP_404_NOT_FOUND)
 
 class UserSerializer (serializers.ModelSerializer):
 
