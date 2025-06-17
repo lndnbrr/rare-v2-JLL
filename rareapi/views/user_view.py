@@ -7,9 +7,28 @@ from rareapi.models import User
 class UserViews (ViewSet):
     ''' user viewset for rare server'''
 
+
+    def list (self, request):
+        '''
+        This is a method that will display a list of all user profiles
+        
+        Args: 
+          
+          request = The incoming info about what a user is asking for
+          and where that info is coming from.
+          
+        Returns:
+          A serialized array of objects of all users. 
+          
+        '''
+
+        user = User.objects.all()
+        serialized = UserSerializer(user, many=True)
+        return Response(serialized.data, status=status.HTTP_200_OK)
+
     def retrieve (self, request, pk):
         '''
-        This is a method that will retrieve a single user profile
+        This is a method that will retrieve a single user's profile
         
         Args: 
           
@@ -23,6 +42,7 @@ class UserViews (ViewSet):
           A serialized object of a user's details. 
           
         '''
+        
         # Utilizing try/except for better error handling.
         try:
             user = User.objects.get(pk=pk)
@@ -33,7 +53,7 @@ class UserViews (ViewSet):
 
     def create (self, request):
         '''
-          This is a method that will create a user profile
+          This is a method that will create a profile for a user
           
           Args: 
             
@@ -44,6 +64,7 @@ class UserViews (ViewSet):
             A serialized object of a new user's details.
           
         '''
+        
         try:
             user = User.objects.create(
               first_name = request.data["first_name"],
@@ -58,24 +79,27 @@ class UserViews (ViewSet):
             serialized = UserSerializer(user)
             return Response(serialized.data, status=status.HTTP_201_CREATED)
 
-        # Returns conflict message about duplicate uid. Useful for Postman testing.
         except IntegrityError:
             return Response({"message": "Uid is already in use. Try another one."},
                             status=status.HTTP_409_CONFLICT)
 
     def update (self, request, pk):
         '''
-          This is a method that will update a user profile
+          This is a method that will update a user's profile
           
           Args: 
             
             request = The incoming info about what a user is asking for
             and where that info is coming from.
             
+            pk = The primary key of the data that a user is hoping to identify 
+            and grab additional detail about.
+            
           Returns:
             A serialized object of a user's updated details.
           
         '''
+        
         try:
             user = User.objects.get(pk = pk)
             user.first_name = request.data["first_name"]
@@ -93,7 +117,6 @@ class UserViews (ViewSet):
             return Response({"message": "User does not exist."}, status=status.HTTP_404_NOT_FOUND)
 
     def destroy (self, request, pk):
-
         '''
           This is a method that will delete a user profile
           
@@ -101,11 +124,12 @@ class UserViews (ViewSet):
             
             request = The incoming info about what a user is asking for
             and where that info is coming from.
-            
-          Returns:
-            A serialized object of a user's updated details.
-          
+
+            pk = The primary key of the data that a user is hoping to identify 
+            and grab additional detail about.
+
         '''
+
         try:
             user = User.objects.get(pk = pk)
             user.delete()
