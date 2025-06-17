@@ -63,6 +63,33 @@ class UserViews (ViewSet):
             return Response({"message": "Uid is already in use. Try another one."},
                             status=status.HTTP_409_CONFLICT)
 
+    def update (self, request, pk):
+        '''
+          This is a method that will update a user profile
+          
+          Args: 
+            
+            request = The incoming info about what a user is asking for
+            and where that info is coming from.
+            
+          Returns:
+            A serialized object of a user's updated details.
+          
+        '''
+
+        user = User.objects.get(pk = pk)
+        user.first_name = request.data["first_name"]
+        user.last_name = request.data["last_name"]
+        user.bio = request.data["bio"]
+        user.profile_image_url = request.data["profile_image_url"]
+        user.email = request.data["email"]
+        user.active = request.data["active"]
+        user.is_staff = request.data["is_staff"]
+        user.save()
+
+        serialized = UserSerializer(user)
+        return Response(serialized.data, status=status.HTTP_200_OK)
+
 
 class UserSerializer (serializers.ModelSerializer):
 
