@@ -25,7 +25,7 @@ class CommentView(ViewSet):
 
         return Response(serializer.data)
 
-    def create(self, request, format=None):
+    def create(self, request):
         """Handle POST requests for comments
 
         Returns JSON serialized comment instance
