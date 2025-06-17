@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import serializers, status
 from rareapi.models import Comment, Post, User
 from rareapi.filters import CommentFilter
+from django.utils.timezone import localtime
 
 
 class CommentView(ViewSet):
@@ -108,7 +109,7 @@ class CommentPostSerializer(serializers.ModelSerializer):
         Returns:
             (string): A properly formatted date and time to be displayed on the front end
         """
-        return obj.created_on.strftime("%m/%d/%Y at %I:%M %p")
+        return localtime(obj.created_on).strftime("%m/%d/%Y at %I:%M %p")
 
     def get_is_author(self, obj):
         """Checks if the uid of the user viewing the comment matches the uid of the author of the comment
