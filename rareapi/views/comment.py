@@ -43,7 +43,6 @@ class CommentView(ViewSet):
 
         comment = Comment.objects.create(
             content=request.data["content"],
-            created_on=request.data["created_on"],
             author=author,
             post=post
         )
