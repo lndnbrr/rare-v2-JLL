@@ -34,13 +34,21 @@ def register_user(request):
       '''
 
     user = User.objects.create(
+        first_name=request.data['firstName'],
+        last_name=request.data['lastName'],
         bio=request.data['bio'],
-        uid=request.data['uid']
+        uid=request.data['uid'],
+        profile_image_url = request.data["PFP"],
+        email = request.data["email"],
+        active = request.data["active"],
+        is_staff = request.data["isStaff"]
     )
 
+    fullname = user.first_name + " " + user.last_name
+
     data = {
+        'message': 'user has been registered',
         'id': user.id,
-        'uid': user.uid,
-        'bio': user.bio
+        'full name': fullname,
     }
     return Response(data)
