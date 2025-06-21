@@ -4,7 +4,7 @@
       "model": "rareapi.post",
       "pk": 1,
       "fields": {
-          "user": "1",
+          "user": "5",
           "category": "1",
           "title": "Sup fools?",
           "publication_date": "2025-05-29",
@@ -18,7 +18,7 @@
     "model": "rareapi.post",
     "pk": 2,
     "fields": {
-        "user": "1",
+        "user": "5",
         "category": "2",
         "title": "World Cup is Coming to America!",
         "publication_date": "2025-06-10",
@@ -31,7 +31,7 @@
   "model": "rareapi.post",
   "pk": 3,
   "fields": {
-      "user": "1",
+      "user": "5",
       "category": "3",
       "title": "The Meaning of Life",
       "publication_date": "2025-05-20",
