@@ -102,13 +102,13 @@ class UserViews (ViewSet):
         
         try:
             user = User.objects.get(pk = pk)
-            user.first_name = request.data["first_name"]
-            user.last_name = request.data["last_name"]
+            user.first_name = request.data["firstName"]
+            user.last_name = request.data["lastName"]
             user.bio = request.data["bio"]
-            user.profile_image_url = request.data["profile_image_url"]
+            user.profile_image_url = request.data["PFP"]
             user.email = request.data["email"]
             user.active = request.data["active"]
-            user.is_staff = request.data["is_staff"]
+            user.is_staff = request.data["isStaff"]
             user.save()
             serialized = UserSerializer(user)
             return Response(serialized.data, status=status.HTTP_200_OK)
