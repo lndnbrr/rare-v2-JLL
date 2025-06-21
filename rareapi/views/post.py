@@ -25,13 +25,13 @@ class PostView(ViewSet):
   def create(self, request):
     """ Handle POST operations for Post instance"""
 
-    userId = User.objects.get(uid=request.data["user"])
-    category = Category.objects.get(pk=request.data["categoryid"])
+    userId = User.objects.get(uid=request.data["uid"])
+    category = Category.objects.get(pk=request.data["category"])
     post = Post.objects.create(
       user=userId,
       category=category,
       title=request.data["title"],
-      publication_date=request.data["publication_date"],
+      publication_date=request.data["publicationDate"],
       image_url=request.data["image_url"],
       content=request.data["content"],
       approved=request.data["approved"],
@@ -43,12 +43,12 @@ class PostView(ViewSet):
     """Handle PUT requests for Posts"""
    
     post = Post.objects.get(pk=pk)
-    user = User.objects.get(pk=request.data["user"])
+    user = User.objects.get(pk=request.data["uid"])
     post.user=user
-    category = Category.objects.get(pk=request.data["categoryid"])
+    category = Category.objects.get(pk=request.data["category"])
     post.category=category
     post.title=request.data["title"]
-    post.publication_date=request.data["publication_date"]
+    post.publication_date=request.data["publicationDate"]
     post.image_url=request.data["image_url"]
     post.content=request.data["content"]
     post.approved=request.data["approved"]
